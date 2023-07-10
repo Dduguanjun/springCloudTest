@@ -20,6 +20,7 @@ public class EurekaClientAApplication implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 
 		System.out.println("222222222");
+		System.out.println("master test");
 
 	}
 }
