@@ -19,7 +19,7 @@ public class EurekaClientAApplication implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
-		System.out.println("");
+		System.out.println("222222222");
 
 	}
 }
