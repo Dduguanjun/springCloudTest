@@ -22,6 +22,7 @@ public class EurekaClientAApplication implements ApplicationRunner {
 		System.out.println("222222222");
 		System.out.println("master test");
 		System.out.println("hot-fix!!!!!");
+		System.out.println("123456789");
 
 	}
 }
