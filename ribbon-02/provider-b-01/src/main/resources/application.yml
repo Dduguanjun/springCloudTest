@@ -1,0 +1,19 @@
+server:
+  port: 8012
+
+spring:
+  application:
+    name: ribbon-provider
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka1:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10

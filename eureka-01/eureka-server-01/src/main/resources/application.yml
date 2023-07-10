@@ -1,0 +1,70 @@
+server:
+  port: 8761 #eureka服务端的默认端口
+
+spring:
+  application:
+    name: eureka-server #应用名称
+
+#eureka的配置分为三类： server  client  实例
+eureka:
+  server:
+    #服务端每隔多长的时间去剔除没有进行重连的客户端（默认60秒）
+    eviction-interval-timer-in-ms: 10000
+    #重连的百分比的阈值  当超过该阈值的客户端都没有发生重连不会剔除任何一个客户端
+    #续约百分比
+    renewal-percent-threshold: 0.85
+    #期待的客户端重新连接的时间（默认30秒）
+    expected-client-renewal-interval-seconds: 5
+  instance:
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+    hostname: eureka1
+    #以ip的形式显示服务的信息
+    prefer-ip-address: true
+    #服务实例续约的时间间隔(间隔多少秒发送一次心跳)
+    lease-renewal-interval-in-seconds: 5
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka}
+    register-with-eureka: ${REGISTER_WITH_EUREKA:true}
+    fetch-registry: ${FETCH_REGISTRY:true}
+
+#-------------------------------------集群版本-----------------------------------------------------
+#server:
+#  port: 8761
+#
+#spring:
+#  application:
+#    name: eureka-server
+#
+#eureka:
+#  client:
+#    service-url: #不写 默认往localhost:8761中注册
+#      defaultZone: http://eureka2:8762/eureka,http://eureka3:8763/eureka
+#  instance:
+#    hostname: eureka1
+#    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+#    lease-renewal-interval-in-seconds: 5
+#    prefer-ip-address: true
+
+#------------------------------------------集群的终极方案---------------------------------------------
+#server:
+#  port: 8761
+#
+#spring:
+#  application:
+#    name: eureka-server
+#
+#eureka:
+#  client:
+#    service-url: #不写 默认往localhost:8761中注册
+#      defaultZone: http://eureka1:8761/eureka,http://eureka2:8762/eureka,http://eureka3:8763/eureka
+#  instance:
+##    hostname: eureka1
+#    instance-id: ${spring.application.name}:${server.port}
+#    lease-renewal-interval-in-seconds: 5
+#    prefer-ip-address: true
+
+
+
+
+
